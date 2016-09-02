@@ -87,3 +87,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# k5
+*/.k5
+*/.pdf
+*/.json
