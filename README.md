@@ -8,8 +8,8 @@ Example Usage
 
 Grab the Inception v3 network that has been converted to mxnet, extract it, and visualize it.  Here we use [har](https://github.com/sio2boss/har) to do the download, extract, and remove the downloaded tar.gz file.
 
-    # Grab k5viz (pip install coming soon)
-    git clone https://github.com/sio2boss/k5viz.git && cd k5viz
+    # Grab k5viz (might not need sudo)
+    sudo pip install k5viz
 
     # Install har
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/sio2boss/har/master/tools/install.sh)"
@@ -17,19 +17,12 @@ Grab the Inception v3 network that has been converted to mxnet, extract it, and 
     # Grab network
     har http://data.dmlc.ml/mxnet/models/imagenet/inception-v3.tar.gz
 
-	# Grab dependencies
-    sudo pip install graphviz docopt
+    # Visualize a k5 file
+    k5viz inception_v3.k5
 
-    # Visualize
-    python k5viz.py model/Inception-7-symbol.json
+    # or
+    k5viz model/Inception-7-symbol.json
     
-    
-TODO
-----
- - [x] Visualize without requiring mxnet
- - [ ] Read from k5
- - [ ] Enable pip install
-
 License
 -------
 © Contributors, 2016. Licensed under an [Apache-2.0](https://github.com/sio2boss/k5viz/blob/master/LICENSE) license.
