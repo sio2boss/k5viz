@@ -29,6 +29,16 @@ try:
 except:
     raise ImportError("k5viz requires docopt library")
 
+try:
+    import h5py
+except:
+    raise ImportError("k5viz requires h5py library")
+
+try:
+    import numpy as np
+except:
+    raise ImportError("k5viz requires numpy library")
+
 
 def _str2tuple(string):
     """convert shape string to list, internal use only
@@ -159,9 +169,14 @@ def main():
     arguments = docopt(__doc__, version='k5viz 1.0')
 
     # Read file
-    input_filename = "model/Inception-7-symbol.json"
-    # TODO Read from within hdf5/k5
-    symbol = open(arguments['<filename>']).read()
+    input_filename = arguments['<filename>']
+    symbol = None
+    if input_filename[-3:] == '.k5':
+        # Read from within hdf5/k5
+        hf = h5py.File(input_filename, 'r')
+        symbol = np.array(hf.get('network')).tostring()
+    else:
+        symbol = open(input_filename).read()
 
     # Render
     fileformat = arguments['--format']
