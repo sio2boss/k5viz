@@ -39,7 +39,6 @@ try:
 except:
     raise ImportError("k5viz requires numpy library")
 
-
 def _str2tuple(string):
     """convert shape string to list, internal use only
 
